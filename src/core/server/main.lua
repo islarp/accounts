@@ -1,8 +1,10 @@
-local db = dbConnect ("sqlite", "./src/utils/database.db")
+local db = dbConnect ("mysql", "host=127.0.0.1; port=3306", "root", "")
 
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), function()
     --dbExec (db, "DROP TABLE InfoAccounts")
-	dbExec (db, "CREATE TABLE IF NOT EXISTS InfoAccounts (ID INTEGER PRIMARY KEY, charName TEXT, charSubName TEXT, charAge INTEGER NOT NULL, charCity INTEGER NOT NULL, accSerial TEXT)")
+    dbExec (db, "CREATE DATABASE IF NOT EXISTS `IslaRP` ")
+    dbExec (db, "USE `IslaRP`")
+	dbExec (db, "CREATE TABLE IF NOT EXISTS InfoAccounts (ID INTEGER PRIMARY KEY, charName TEXT, charSubName TEXT, charAge INTEGER NOT NULL, accSerial TEXT)")
 	print ("Table created.")
 end)
 
@@ -14,7 +16,7 @@ function NewPlayerCharacter (ID, charName, charSubName, charAge, accSerial, char
         print("Usuário tem o número máximo de contas")
         return "Erro"
     else
-        dbExec (db, "INSERT INTO InfoAccounts (ID, charName, charSubName, charAge, charCity, accSerial) VALUES(?,?,?,?,?,?)", ID, charName, charSubName, charAge, accSerial)
+        dbExec (db, "INSERT INTO InfoAccounts (ID, charName, charSubName, charAge, accSerial) VALUES(?,?,?,?,?)", ID, charName, charSubName, charAge, accSerial)
         return "Criado"
     end
 end
