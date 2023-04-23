@@ -1,2 +1,2 @@
-# mta-template
-This is a template for creating scripts for Multi Theft Auto.
+# islarp-accounts
+A System that lets you have 3 different characters in one account
