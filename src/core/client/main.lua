@@ -1,4 +1,4 @@
-local font1 = dxCreateFont('assets/fonts/poppins-medium.ttf', 18, false, 'default')
+local font1 = dxCreateFont('assets/fonts/poppins-medium.ttf', 20, false, 'default')
 local font2 = dxCreateFont('assets/fonts/poppins-semibold.ttf', 22, false, 'default')
 local font3 = dxCreateFont('assets/fonts/poppins-semibold.ttf', 18, false, 'default')
 local font4 = dxCreateFont('assets/fonts/poppins-semibold.ttf', 21, false, 'default')
@@ -19,6 +19,12 @@ local rectangleSvgData = [[
 local rectangleSlotSvgData = [[
     <svg width="360" height="104">
     <rect x="0" y="0" width="360" height="104" rx="4" ry="4" fill="#262626" />
+    </svg>
+]]
+
+local rectangleSelectedSvgData = [[
+    <svg width="360" height="104">
+    <rect x="0" y="0" width="360" height="104" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626"/>
     </svg>
 ]]
 
@@ -68,6 +74,7 @@ local rectangleSvg
 local rectangleSlotSvg
 local lockSvgIcon
 local rectangleButtonSvg
+local rectangleSelectedSvg
 
 local monthsTable = {
 	[1] = "Jan.",
@@ -83,29 +90,86 @@ local monthsTable = {
 	[11] = "Nov.",
 	[12] = "Dez."
 }
-
+ 
 function getRealMonth()
 	local time = getRealTime()
 	local month = time.month + 1
 	return monthsTable[month]
 end
 
-local function drawAccountsSvg()
+local daysTable = {
+	[1] = "1",
+	[2] = "2",
+	[3] = "3",
+	[4] = "4",
+	[5] = "5",
+	[6] = "6",
+	[7] = "7",
+	[8] = "8",
+	[9] = "8",
+	[10] = "10",
+	[11] = "11",
+	[12] = "12",
+	[13] = "13",
+	[14] = "14",
+	[15] = "15",
+	[16] = "16",
+	[17] = "17",
+	[18] = "18",
+	[19] = "19",
+	[20] = "20",
+	[21] = "21",
+	[22] = "22",
+	[23] = "23",
+	[24] = "24",
+	[25] = "25",
+	[26] = "26",
+	[27] = "27",
+	[28] = "28",
+	[29] = "29",
+	[30] = "30",
+	[31] = "31"
+}
+
+function getRealDay()
+    local time = getRealTime()
+    local day = time.monthday
+    return daysTable[day]
+end
+
+function CheckPlayerHasCharacter()
+    triggerServerEvent('IslaRP:CheckPlayerHasCharacter', localPlayer)
+end
+
+function drawAccountsSvg()
     local realMonth = getRealMonth()
+    local realDay = getRealDay()
+
+    local playercharacter = CheckPlayerHasCharacter()
     
     dxDrawImage(0, 0, 1920, 1080, backgroundSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
     dxDrawImage(24, 15, 166.71, 47, logoSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
     dxDrawImage(1537, 43, 19, 21, bellSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
     dxDrawImage(1566, 43, 18, 20, calendarSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
     
-    dxDrawText('29 '..realMonth..' 2023 | ', 1592, 43, 125, 21, tocolor(255, 255, 2555, 255), 1, font1)
+    dxDrawText(''..realDay..' '..realMonth..' 2023  |', 1592, 38.5, 125, 21, tocolor(255, 255, 2555, 255), 1, font1)
+
+    dxDrawText('revoltz', 1748, 36.5, 81, 21, tocolor(255, 255, 2555, 255), 1, font1)
     
-    dxDrawText('Bom dia, hazzard.', 111, 219, 212, 33, tocolor(255, 255, 2555, 255), 1, font2)
+    dxDrawText('Bom dia, revoltz.', 111, 219, 212, 33, tocolor(255, 255, 2555, 255), 1, font2)
     dxDrawText('Personagens', 111, 293, 120, 27, tocolor(255, 255, 2555, 255), 1, font3)
 
     dxDrawImage(111, 327, 360, 4, rectangleSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
-    dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+    if isCursorOnElement(111, 361, 360, 104) then
+        dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(111, 361, 360, 104, rectangleSelectedSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+    else
+        dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+    end
+
+    if 
+    
     dxDrawImage(111, 470, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
     dxDrawImage(111, 579, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
@@ -120,10 +184,12 @@ local function drawAccountsSvg()
 
     dxDrawText('ENTRAR', 249, 714, 83, 32, tocolor(255, 255, 255, 255), 1, font5)
 
+    showCursor(true)
+    showChat(false)
 end
 addEventHandler('onClientRender', root, drawAccountsSvg)
 
-local function init()
+function init()
     backgroundSvg = svgCreate(1920, 1080, backgroundSvgData)
     logoSvgIcon = svgCreate(166.71, 47, logoSvgIconData)
     bellSvgIcon = svgCreate(19, 21, bellSvgIconData)
@@ -132,5 +198,6 @@ local function init()
     rectangleSlotSvg = svgCreate(360, 104, rectangleSlotSvgData)
     lockSvgIcon = svgCreate(16, 21, lockSvgIconData)
     rectangleButtonSvg = svgCreate(360, 73, rectangleButtonSvgData)
+    rectangleSelectedSvg = svgCreate(360, 104, rectangleSelectedSvgData)
 end
 addEventHandler('onClientResourceStart', resourceRoot, init)
