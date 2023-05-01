@@ -137,15 +137,9 @@ function getRealDay()
     return daysTable[day]
 end
 
-function CheckPlayerHasCharacter()
-    triggerServerEvent('IslaRP:CheckPlayerHasCharacter', localPlayer)
-end
-
 function drawAccountsSvg()
     local realMonth = getRealMonth()
     local realDay = getRealDay()
-
-    local playercharacter = CheckPlayerHasCharacter()
     
     dxDrawImage(0, 0, 1920, 1080, backgroundSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
     dxDrawImage(24, 15, 166.71, 47, logoSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
@@ -167,8 +161,6 @@ function drawAccountsSvg()
     else
         dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
     end
-
-    if 
     
     dxDrawImage(111, 470, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
     dxDrawImage(111, 579, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
