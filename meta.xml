@@ -1,15 +1,14 @@
 <isla>
     <info author='' version='1.0.0' name='' description='' type='script' />
 
-    <!-- core - config -->
     <script src='src/core/config/main.lua' type='shared' />
 
-    <!-- core - client -->
-    <script src='src/core/client/main.lua' type='client' />
+    <script src='src/core/client/main.lua' type='client' cache = 'false' />
 
-     <!-- core - server -->
-    <script src='src/core/server/main.lua' type='server' />
+    <script src='src/core/server/main.lua' type='server' cache = 'false' />
+    <script src='src/utils/responsive.lua' type='client' cache = 'false' />
 
-    <!-- utils -->
-    <script src='src/utils/responsive.lua' type='client' />
+    <file src = 'assets/fonts/poppins-medium.ttf' cache = 'false' />
+    <file src = 'assets/fonts/poppins-semibold.ttf' cache = 'false' />
+    <file src = 'assets/fonts/poppins-bold.ttf' cache = 'false' />
 </isla>

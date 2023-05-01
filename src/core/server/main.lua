@@ -8,6 +8,13 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), fu
 	print ("Table created.")
 end)
 
+addEventHandler('onPlayerJoin', getResourceRootElement(getThisResource()),
+    function ()
+        dbExec (db, "USE `IslaRP`")
+        triggerClientEvent('IslaRP:drawAccountsSvg', source)
+    end
+)
+
 function NewPlayerCharacter (ID, charName, charSubName, charAge, accSerial, charCity )
     local check = dbQuery (db, "SELECT * FROM InfoAccounts WHERE accSerial=?", accSerial)
     response = dbPoll(check, -1)
@@ -20,6 +27,9 @@ function NewPlayerCharacter (ID, charName, charSubName, charAge, accSerial, char
         return "Criado"
     end
 end
+
+addEvent("Add1", true)
+addEventHandler("Add1", getRootElement(), NewPlayerCharacter)
 
 function CheckPlayerCharacterAmount (Serial)
 
@@ -37,6 +47,3 @@ end
 
 addEvent("Check1", true)
 addEventHandler("Check1", getRootElement(), CheckPlayerCharacterAmount)
-
-addEvent("Add1", true)
-addEventHandler("Add1", getRootElement(), NewPlayerCharacter)
