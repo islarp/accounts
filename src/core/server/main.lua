@@ -38,14 +38,3 @@ addEventHandler('IslaRP:CheckPlayerCharacterAmount', getRootElement(),
         end
     end
 )
-
-127.0.0.1 {
-    -- resquest discord dm - Approved
-    addAccount(discordid, sha256(discordid) {
-        characters {
-            char1 {
-                addAccount(user: discordid-1, )
-            }
-        }
-    })
-}
