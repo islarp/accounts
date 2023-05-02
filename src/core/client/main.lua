@@ -4,6 +4,10 @@ local font3 = dxCreateFont('assets/fonts/poppins-semibold.ttf', 18, false, 'defa
 local font4 = dxCreateFont('assets/fonts/poppins-semibold.ttf', 21, false, 'default')
 local font5 = dxCreateFont('assets/fonts/poppins-bold.ttf', 21, false, 'default')
 
+local aba = 2
+
+-------------> Itens da Aba 2 <-------------
+
 local backgroundSvgData = [[
     <svg width="1920" height="1080">
     <rect x="0" y="0" width="1920" height="1080" fill="#242425"/>
@@ -24,7 +28,7 @@ local rectangleSlotSvgData = [[
 
 local rectangleSelectedSvgData = [[
     <svg width="360" height="104">
-    <rect x="0" y="0" width="360" height="104" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626"/>
+    <rect x="0" y="0" width="360" height="104" rx="4" ry="4" stroke="#404040" stroke-width="2" fill="#262626"/>
     </svg>
 ]]
 
@@ -33,6 +37,10 @@ local rectangleButtonSvgData = [[
     <rect x="0" y="0" width="360" height="104" rx="4" ry="4" fill="#EA580C" />
     </svg>
 ]]
+
+
+-------------> Itens da Aba 2 e 3 <-------------
+
 
 local logoSvgIconData = [[
     <svg width="166.71" height="47" viewBox="0 0 166.71 47" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,6 +73,7 @@ local lockSvgIconData = [[
     </svg>
 
 ]]
+
 
 local backgroundSvg
 local logoSvgIcon
@@ -141,43 +150,57 @@ function drawAccountsSvg()
     local realMonth = getRealMonth()
     local realDay = getRealDay()
     
-    dxDrawImage(0, 0, 1920, 1080, backgroundSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
-    dxDrawImage(24, 15, 166.71, 47, logoSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
-    dxDrawImage(1537, 43, 19, 21, bellSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
-    dxDrawImage(1566, 43, 18, 20, calendarSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
-    
-    dxDrawText(''..realDay..' '..realMonth..' 2023  |', 1592, 38.5, 125, 21, tocolor(255, 255, 2555, 255), 1, font1)
+    if aba == 2 then
+        dxDrawImage(0, 0, 1920, 1080, backgroundSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(24, 15, 166.71, 47, logoSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(1537, 43, 19, 21, bellSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(1566, 43, 18, 20, calendarSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
-    dxDrawText('revoltz', 1748, 36.5, 81, 21, tocolor(255, 255, 2555, 255), 1, font1)
-    
-    dxDrawText('Bom dia, revoltz.', 111, 219, 212, 33, tocolor(255, 255, 2555, 255), 1, font2)
-    dxDrawText('Personagens', 111, 293, 120, 27, tocolor(255, 255, 2555, 255), 1, font3)
+        dxDrawText(''..realDay..' '..realMonth..' 2023  |', 1592, 38.5, 125, 21, tocolor(255, 255, 2555, 255), 1, font1)
 
-    dxDrawImage(111, 327, 360, 4, rectangleSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawText('revoltz', 1748, 36.5, 81, 21, tocolor(255, 255, 2555, 255), 1, font1)
 
-    if isCursorOnElement(111, 361, 360, 104) then
-        dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
-        dxDrawImage(111, 361, 360, 104, rectangleSelectedSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
-    else
-        dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawText('Bom dia, revoltz.', 111, 219, 212, 33, tocolor(255, 255, 2555, 255), 1, font2)
+        dxDrawText('Personagens', 111, 293, 120, 27, tocolor(255, 255, 2555, 255), 1, font3)
+
+        dxDrawImage(111, 327, 360, 4, rectangleSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+
+        if isCursorOnElement(111, 361, 360, 104) then
+            dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+            dxDrawImage(111, 361, 360, 104, rectangleSelectedSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        else
+            dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        end
+
+        dxDrawImage(111, 470, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(111, 579, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+
+        dxDrawText('Criar personagem', 133, 397, 197, 32, tocolor(255, 255, 255, 50), 1, font4)
+        dxDrawText('Criar personagem', 133, 506, 197, 32, tocolor(255, 255, 255, 50), 1, font4)
+        dxDrawText('Criar personagem', 133, 615, 197, 32, tocolor(255, 255, 255, 50), 1, font4)
+
+        dxDrawImage(425, 510, 16, 21, lockSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 50), false)
+        dxDrawImage(425, 619, 16, 21, lockSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 50), false)
+
+        dxDrawImage(111, 693, 360, 73, rectangleButtonSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+
+        dxDrawText('ENTRAR', 249, 714, 83, 32, tocolor(255, 255, 255, 255), 1, font5)
+
+        showCursor(true)
+        showChat(false)
     end
-    
-    dxDrawImage(111, 470, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
-    dxDrawImage(111, 579, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
-    dxDrawText('Criar personagem', 133, 397, 197, 32, tocolor(255, 255, 255, 50), 1, font4)
-    dxDrawText('Criar personagem', 133, 506, 197, 32, tocolor(255, 255, 255, 50), 1, font4)
-    dxDrawText('Criar personagem', 133, 615, 197, 32, tocolor(255, 255, 255, 50), 1, font4)
+    if aba == 3 then
+        dxDrawImage(0, 0, 1920, 1080, backgroundSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(24, 15, 166.71, 47, logoSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(1537, 43, 19, 21, bellSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(1566, 43, 18, 20, calendarSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
-    dxDrawImage(425, 510, 16, 21, lockSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 50), false)
-    dxDrawImage(425, 619, 16, 21, lockSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 50), false)
+        dxDrawText(''..realDay..' '..realMonth..' 2023  |', 1592, 38.5, 125, 21, tocolor(255, 255, 2555, 255), 1, font1)
 
-    dxDrawImage(111, 693, 360, 73, rectangleButtonSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawText('revoltz', 1748, 36.5, 81, 21, tocolor(255, 255, 2555, 255), 1, font1)
+    end
 
-    dxDrawText('ENTRAR', 249, 714, 83, 32, tocolor(255, 255, 255, 255), 1, font5)
-
-    showCursor(true)
-    showChat(false)
 end
 addEventHandler('onClientRender', root, drawAccountsSvg)
 
