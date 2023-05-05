@@ -9,7 +9,7 @@ local font8 = dxCreateFont('assets/fonts/inter-bold.ttf', 48, false, 'default')
 local font9 = dxCreateFont('assets/fonts/inter-medium.ttf', 16, false, 'default')
 local font10 = dxCreateFont('assets/fonts/inter-medium.ttf', 18, false, 'default')
 
-local aba = 1
+local aba = 2
 
 
 ---------------------> Itens Svg's <---------------------
@@ -34,8 +34,8 @@ local rectangleSlotSvgData = [[
 ]]
 
 local rectangleSelectedSvgData = [[
-    <svg width="360" height="104">
-    <rect x="0" y="0" width="360" height="104" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626" />
+    <svg width="360" height="104" viewBox="0 0 360 104" fill="#262626" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="360" height="104" rx="3.5" stroke="#404040"/>
     </svg>
 ]]
 
@@ -77,20 +77,20 @@ local lockSvgIconData = [[
 ]]
 
 local rectangleSlot2SvgData = [[
-    <svg width="360" height="50">
-    <rect x="0" y="0" width="360" height="50" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626" />
+    <svg width="360" height="50" viewBox="0 0 360 50" fill="#262626" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="360" height="50" rx="3.5" stroke="#404040" />
     </svg>
 ]]
 
 local rectangleSlot3SvgData = [[
-    <svg width="250" height="50">
-    <rect x="0" y="0" width="250" height="50" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626" />
+    <svg width="250" height="50" fill="#262626" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="250" height="50" rx="4" ry="4" stroke="#404040" />
     </svg>
 ]]
 
 local rectangleSlot4SvgData = [[
-    <svg width="50" height="50">
-    <rect x="0" y="0" width="50" height="50" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626" />
+    <svg width="50" height="50" fill="#262626" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="50" height="50" rx="4" ry="4" stroke="#404040" />
     </svg>
 ]]
 
