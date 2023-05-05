@@ -3,10 +3,17 @@ local font2 = dxCreateFont('assets/fonts/poppins-semibold.ttf', 22, false, 'defa
 local font3 = dxCreateFont('assets/fonts/poppins-semibold.ttf', 18, false, 'default')
 local font4 = dxCreateFont('assets/fonts/poppins-semibold.ttf', 21, false, 'default')
 local font5 = dxCreateFont('assets/fonts/poppins-bold.ttf', 21, false, 'default')
+local font6 = dxCreateFont('assets/fonts/poppins-medium.ttf', 18, false, 'default')
+local font7 = dxCreateFont('assets/fonts/poppins-medium.ttf', 14, false, 'default')
+local font8 = dxCreateFont('assets/fonts/inter-bold.ttf', 48, false, 'default')
+local font9 = dxCreateFont('assets/fonts/inter-medium.ttf', 16, false, 'default')
+local font10 = dxCreateFont('assets/fonts/inter-medium.ttf', 18, false, 'default')
 
-local aba = 2
+local aba = 1
 
--------------> Itens da Aba 2 <-------------
+
+---------------------> Itens Svg's <---------------------
+
 
 local backgroundSvgData = [[
     <svg width="1920" height="1080">
@@ -28,7 +35,7 @@ local rectangleSlotSvgData = [[
 
 local rectangleSelectedSvgData = [[
     <svg width="360" height="104">
-    <rect x="0" y="0" width="360" height="104" rx="4" ry="4" stroke="#404040" stroke-width="2" fill="#262626"/>
+    <rect x="0" y="0" width="360" height="104" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626" />
     </svg>
 ]]
 
@@ -37,10 +44,6 @@ local rectangleButtonSvgData = [[
     <rect x="0" y="0" width="360" height="104" rx="4" ry="4" fill="#EA580C" />
     </svg>
 ]]
-
-
--------------> Itens da Aba 2 e 3 <-------------
-
 
 local logoSvgIconData = [[
     <svg width="166.71" height="47" viewBox="0 0 166.71 47" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,19 +74,53 @@ local lockSvgIconData = [[
     <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M2 21C1.45 21 0.979002 20.804 0.587002 20.412C0.195002 20.02 -0.000664969 19.5493 1.69779e-06 19V9C1.69779e-06 8.45 0.196001 7.979 0.588001 7.587C0.980001 7.195 1.45067 6.99933 2 7H3V5C3 3.61667 3.48767 2.43733 4.463 1.462C5.43834 0.486667 6.61734 -0.000665984 8 6.8306e-07C9.38334 6.8306e-07 10.5627 0.487667 11.538 1.463C12.5133 2.43833 13.0007 3.61733 13 5V7H14C14.55 7 15.021 7.196 15.413 7.588C15.805 7.98 16.0007 8.45067 16 9V19C16 19.55 15.804 20.021 15.412 20.413C15.02 20.805 14.5493 21.0007 14 21H2ZM8 16C8.55 16 9.021 15.804 9.413 15.412C9.805 15.02 10.0007 14.5493 10 14C10 13.45 9.804 12.979 9.412 12.587C9.02 12.195 8.54934 11.9993 8 12C7.45 12 6.979 12.196 6.587 12.588C6.195 12.98 5.99934 13.4507 6 14C6 14.55 6.196 15.021 6.588 15.413C6.98 15.805 7.45067 16.0007 8 16ZM5 7H11V5C11 4.16667 10.7083 3.45833 10.125 2.875C9.54167 2.29167 8.83333 2 8 2C7.16667 2 6.45834 2.29167 5.875 2.875C5.29167 3.45833 5 4.16667 5 5V7Z" fill="white" fill-opacity="0.5"/>
     </svg>
+]]
 
+local rectangleSlot2SvgData = [[
+    <svg width="360" height="50">
+    <rect x="0" y="0" width="360" height="50" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626" />
+    </svg>
+]]
+
+local rectangleSlot3SvgData = [[
+    <svg width="250" height="50">
+    <rect x="0" y="0" width="250" height="50" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626" />
+    </svg>
+]]
+
+local rectangleSlot4SvgData = [[
+    <svg width="50" height="50">
+    <rect x="0" y="0" width="50" height="50" rx="4" ry="4" stroke="#404040" stroke-width="1" fill="#262626" />
+    </svg>
+]]
+
+local rectangleButton2SvgData = [[
+    <svg width="175" height="50">
+    <rect x="0" y="0" width="175" height="50" rx="12" ry="12" fill="#EA580C" />
+    </svg>
 ]]
 
 
+---------------------> Funções Locais dos Svgs's <---------------------
+
+
 local backgroundSvg
+local rectangleSvg
+local rectangleSlotSvg
+local rectangleSelectedSvg
+local rectangleButtonSvg
 local logoSvgIcon
 local bellSvgIcon
 local calendarSvgIcon
-local rectangleSvg
-local rectangleSlotSvg
 local lockSvgIcon
-local rectangleButtonSvg
-local rectangleSelectedSvg
+local rectangleSlot2Svg
+local rectangleSlot3Svg
+local rectangleSlot4Svg
+local rectangleButton2Svg
+
+
+---------------------> Funções de Dias Meses e Anos <---------------------
+
 
 local monthsTable = {
 	[1] = "Jan.",
@@ -146,6 +183,10 @@ function getRealDay()
     return daysTable[day]
 end
 
+
+---------------------> Função do Painel <---------------------
+
+
 function drawAccountsSvg()
     local realMonth = getRealMonth()
     local realDay = getRealDay()
@@ -156,17 +197,16 @@ function drawAccountsSvg()
         dxDrawImage(1537, 43, 19, 21, bellSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
         dxDrawImage(1566, 43, 18, 20, calendarSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
-        dxDrawText(''..realDay..' '..realMonth..' 2023  |', 1592, 38.5, 125, 21, tocolor(255, 255, 2555, 255), 1, font1)
+        dxDrawText(''..realDay..' '..realMonth..' 2023  |', 1592, 38.5, 125, 21, tocolor(255, 255, 255, 255), 1, font1)
 
-        dxDrawText('revoltz', 1748, 36.5, 81, 21, tocolor(255, 255, 2555, 255), 1, font1)
+        dxDrawText('revoltz', 1748, 36.5, 81, 21, tocolor(255, 255, 255, 255), 1, font1)
 
-        dxDrawText('Bom dia, revoltz.', 111, 219, 212, 33, tocolor(255, 255, 2555, 255), 1, font2)
-        dxDrawText('Personagens', 111, 293, 120, 27, tocolor(255, 255, 2555, 255), 1, font3)
+        dxDrawText('Bom dia, revoltz.', 111, 219, 212, 33, tocolor(255, 255, 255, 255), 1, font2)
+        dxDrawText('Personagens', 111, 293, 120, 27, tocolor(255, 255, 255, 255), 1, font3)
 
         dxDrawImage(111, 327, 360, 4, rectangleSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
         if isCursorOnElement(111, 361, 360, 104) then
-            dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
             dxDrawImage(111, 361, 360, 104, rectangleSelectedSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
         else
             dxDrawImage(111, 361, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
@@ -175,12 +215,12 @@ function drawAccountsSvg()
         dxDrawImage(111, 470, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
         dxDrawImage(111, 579, 360, 104, rectangleSlotSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
-        dxDrawText('Criar personagem', 133, 397, 197, 32, tocolor(255, 255, 255, 50), 1, font4)
-        dxDrawText('Criar personagem', 133, 506, 197, 32, tocolor(255, 255, 255, 50), 1, font4)
-        dxDrawText('Criar personagem', 133, 615, 197, 32, tocolor(255, 255, 255, 50), 1, font4)
+        dxDrawText('Criar personagem', 133, 397, 197, 32, tocolor(255, 255, 255, 100), 1, font4)
+        dxDrawText('Criar personagem', 133, 506, 197, 32, tocolor(255, 255, 255, 100), 1, font4)
+        dxDrawText('Criar personagem', 133, 615, 197, 32, tocolor(255, 255, 255, 100), 1, font4)
 
-        dxDrawImage(425, 510, 16, 21, lockSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 50), false)
-        dxDrawImage(425, 619, 16, 21, lockSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 50), false)
+        dxDrawImage(425, 510, 16, 21, lockSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(425, 619, 16, 21, lockSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
         dxDrawImage(111, 693, 360, 73, rectangleButtonSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
@@ -196,23 +236,58 @@ function drawAccountsSvg()
         dxDrawImage(1537, 43, 19, 21, bellSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
         dxDrawImage(1566, 43, 18, 20, calendarSvgIcon, 0, 0, 0, tocolor(255, 255, 255, 255), false)
 
-        dxDrawText(''..realDay..' '..realMonth..' 2023  |', 1592, 38.5, 125, 21, tocolor(255, 255, 2555, 255), 1, font1)
+        dxDrawText(''..realDay..' '..realMonth..' 2023  |', 1592, 38.5, 125, 21, tocolor(255, 255, 255, 255), 1, font1)
 
-        dxDrawText('revoltz', 1748, 36.5, 81, 21, tocolor(255, 255, 2555, 255), 1, font1)
+        dxDrawText('revoltz', 1748, 36.5, 81, 21, tocolor(255, 255, 255, 255), 1, font1)
+        
+        dxDrawText('CRIAÇÃO DE PERSONAGENS', 111, 219, 301, 33, tocolor(255, 255, 255, 255), 1, font2)
+        dxDrawText('Para criar seu personagem, preencha as \ninformações abaixo.', 111, 257, 460, 54, tocolor(255, 255, 255, 255), 1, font6)
+
+        dxDrawImage(111, 401, 360, 50, rectangleSlot2Svg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(111, 462, 360, 50, rectangleSlot2Svg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(111, 523, 360, 50, rectangleSlot2Svg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+
+        dxDrawImage(111, 584, 250, 50, rectangleSlot3Svg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+
+        dxDrawImage(366, 584, 50, 50, rectangleSlot4Svg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawImage(421, 584, 50, 50, rectangleSlot4Svg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+
+        dxDrawImage(111, 651, 360, 73, rectangleButtonSvg, 0, 0, 0, tocolor(255, 255, 255, 255), false)
+        dxDrawText('PRÓXIMO', 240, 672, 101, 32, tocolor(255, 255, 255, 255), 1, font5)
     end
 
 end
 addEventHandler('onClientRender', root, drawAccountsSvg)
 
+---------------------> Funções de Click <---------------------
+
+addEventHandler('onClientClick', root,
+    function()
+        if aba == 2 then
+            if isCursorOnElement(111, 361, 360, 104) then
+                aba = 3
+            end
+        end
+    end
+)
+
+
+---------------------> Função de Carregar os Svg's <---------------------
+
+
 function init()
     backgroundSvg = svgCreate(1920, 1080, backgroundSvgData)
+    rectangleSvg = svgCreate(360, 4, rectangleSvgData)
+    rectangleSlotSvg = svgCreate(360, 104, rectangleSlotSvgData)
+    rectangleSelectedSvg = svgCreate(360, 104, rectangleSelectedSvgData)
+    rectangleButtonSvg = svgCreate(360, 73, rectangleButtonSvgData)
     logoSvgIcon = svgCreate(166.71, 47, logoSvgIconData)
     bellSvgIcon = svgCreate(19, 21, bellSvgIconData)
     calendarSvgIcon = svgCreate(18, 20, calendarSvgIconData)
-    rectangleSvg = svgCreate(360, 4, rectangleSvgData)
-    rectangleSlotSvg = svgCreate(360, 104, rectangleSlotSvgData)
     lockSvgIcon = svgCreate(16, 21, lockSvgIconData)
-    rectangleButtonSvg = svgCreate(360, 73, rectangleButtonSvgData)
-    rectangleSelectedSvg = svgCreate(360, 104, rectangleSelectedSvgData)
+    rectangleSlot2Svg = svgCreate(360, 50, rectangleSlot2SvgData)
+    rectangleSlot3Svg = svgCreate(250, 50, rectangleSlot3SvgData)
+    rectangleSlot4Svg = svgCreate(50, 50, rectangleSlot4SvgData)
+    rectangleButton2Svg = svgCreate(175, 50, rectangleButton2SvgData)
 end
 addEventHandler('onClientResourceStart', resourceRoot, init)
