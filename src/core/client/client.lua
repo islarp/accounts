@@ -143,6 +143,7 @@ function getRealMonth()
 	return monthsTable[month]
 end
 
+
 local daysTable = {
 	[1] = "1",
 	[2] = "2",
@@ -177,12 +178,12 @@ local daysTable = {
 	[31] = "31"
 }
 
+
 function getRealDay()
     local time = getRealTime()
     local day = time.monthday
     return daysTable[day]
 end
-
 
 ---------------------> Função do Painel <---------------------
 
